@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, avoid_unnecessary_containers, use_build_context_synchronously
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, avoid_unnecessary_containers, use_build_context_synchronously, no_leading_underscores_for_local_identifiers
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -202,7 +202,7 @@ class EmployeePageScreen extends StatelessWidget {
                             style: TextStyle(
                               fontFamily: 'Inter',
                               fontSize: 19,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.w500,
                               color: "#3C3C3C".toColor(),
                             ),
                           ),

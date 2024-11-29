@@ -114,17 +114,23 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
         barrierDismissible: false,
         builder: (BuildContext context) {
           return AlertDialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+              side: BorderSide(
+                color: "#00000033".toColor(),
+                width: 2.0,
+              ),
+            ),
             content: Container(
               width: MediaQuery.of(context).size.width * 0.5,
-              height: MediaQuery.of(context).size.height * 0.35,
+              height: MediaQuery.of(context).size.height * 0.32,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Image.asset(
                     'assets/success2.gif',
-                    width: 150,
-                    height: 150,
+                    width: 120,
+                    height: 120,
                     fit: BoxFit.cover,
                   ),
                   SizedBox(height: 50),
@@ -137,7 +143,7 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
                       fontWeight: FontWeight.w900,
                     ),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 30),
                   Text(
                     'Saved successfully',
                     style: TextStyle(
@@ -147,7 +153,7 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
                         color: Color.fromARGB(254, 85, 85, 85)),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 30),
                   Divider(
                     color: Color.fromARGB(254, 195, 195, 195),
                     thickness: 1,
@@ -158,7 +164,7 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
             actionsAlignment: MainAxisAlignment.center,
             actions: [
               Padding(
-                padding: const EdgeInsets.only(top: 10.0, bottom: 60),
+                padding: const EdgeInsets.only(bottom: 40),
                 child: TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -212,7 +218,7 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             content: Container(
               width: MediaQuery.of(context).size.width * 0.5,
-              height: MediaQuery.of(context).size.height * 0.32,
+              height: MediaQuery.of(context).size.height * 0.35,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -225,7 +231,7 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
                     'Delete Confirmation',
                     style: TextStyle(
                       fontFamily: 'Inter/assets/font/Inter/static/Inter_28pt-Bold.ttf',
-                      fontSize: 36,
+                      fontSize: 37,
                       color: Color.fromARGB(255, 83, 83, 83),
                       fontWeight: FontWeight.w700,
                     ),
@@ -235,14 +241,14 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
                     'Are you sure you want to delete?',
                     style: TextStyle(
                         fontFamily: 'Inter/assets/font/Inter/static/Inter_28pt-Bold.ttf',
-                        fontSize: 24,
+                        fontSize: 29,
                         fontWeight: FontWeight.w600,
                         color: Color.fromARGB(255, 137, 137, 137)),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 35),
                   Divider(
-                    color: Color.fromARGB(254, 195, 195, 195),
+                    color: "#00000033".toColor(),
                     thickness: 1,
                   ),
                 ],
@@ -298,15 +304,15 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                           content: Container(
                             width: MediaQuery.of(context).size.width * 0.5,
-                            height: MediaQuery.of(context).size.height * 0.35,
+                            height: MediaQuery.of(context).size.height * 0.32,
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset(
                                   'assets/success2.gif',
-                                  width: 150,
-                                  height: 150,
+                                  width: 120,
+                                  height: 120,
                                   fit: BoxFit.cover,
                                 ),
                                 SizedBox(height: 50),
@@ -319,7 +325,7 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
                                     fontWeight: FontWeight.w900,
                                   ),
                                 ),
-                                SizedBox(height: 20),
+                                SizedBox(height: 30),
                                 Text(
                                   'Saved successfully',
                                   style: TextStyle(
@@ -329,7 +335,7 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
                                       color: "#555555".toColor()),
                                   textAlign: TextAlign.center,
                                 ),
-                                SizedBox(height: 20),
+                                SizedBox(height: 30),
                                 Divider(
                                   color: "#00000033".toColor(),
                                   thickness: 1,
@@ -339,7 +345,7 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
                           ),
                           actions: [
                             Padding(
-                              padding: const EdgeInsets.only(bottom: 60.0),
+                              padding: const EdgeInsets.only(bottom: 40.0),
                               child: TextButton(
                                 onPressed: () {
                                   Navigator.of(context).pop();
@@ -763,7 +769,7 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
               if (isNumeric && !RegExp(r'^\d+$').hasMatch(value)) {
                 return '$label must be numeric';
               }
-              if (isPhone && !RegExp(r'^\d{10}$').hasMatch(value)) {
+              if (isPhone && !RegExp(r'^(?:\d{10}|\d{3}-\d{3}-\d{4})$').hasMatch(value)) {
                 return 'Phone number must be 10 digits';
               }
               return null; // ผ่านการตรวจสอบ
