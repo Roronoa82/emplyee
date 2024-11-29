@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:isar/isar.dart';
 import 'bloc/employee_bloc.dart';
 import 'isar_service.dart';
 import 'screens/employee_page.dart';
@@ -26,10 +25,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Employee Manager',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: EmployeePageScreen(),
+        theme: ThemeData(primarySwatch: Colors.grey),
+        home: const EmployeePageScreen(),
       ),
     );
   }

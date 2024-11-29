@@ -1,3 +1,6 @@
+// ignore_for_file: avoid_print
+
+import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'employee.dart';
@@ -11,15 +14,12 @@ class IsarService {
   }
 
   Future<Isar> _openDB() async {
-    // ใช้ path_provider เพื่อหา directory ที่เหมาะสม
     final directory = await getApplicationDocumentsDirectory();
     if (Isar.instanceNames.isEmpty) {
       return await Isar.open(
         [EmployeeSchema],
-        directory:
-            directory.path, // กำหนด path ให้ Isar เก็บไฟล์ใน directory นี้
-        //inspector: false, // ปิดการใช้งาน inspector สำหรับ production
-        inspector: true, // ใช้สำหรับ debug
+        directory: directory.path,
+        inspector: true,
       );
     }
     return Future.value(Isar.getInstance());
@@ -32,9 +32,9 @@ class IsarService {
       await isar.writeTxn(() async {
         await isar.employees.put(employee);
       });
-      print("Employee added successfully: $employee");
+      debugPrint("Employee added successfully: $employee");
     } catch (e) {
-      print("Error adding employee: $e");
+      debugPrint("Error adding employee: $e");
     }
   }
 
@@ -43,25 +43,18 @@ class IsarService {
     try {
       final isar = await db;
       final employees = await isar.employees.where().findAll();
-      print("Loaded employees: $employees"); // ตรวจสอบผลลัพธ์ที่ดึงมา
+      debugPrint("Loaded employees: $employees"); // ตรวจสอบผลลัพธ์ที่ดึงมา
       return employees;
     } catch (e) {
-      print('Error getting all employees: $e');
-      return []; // คืนค่าเป็นลิสต์ว่างเมื่อเกิดข้อผิดพลาด
+      debugPrint('Error getting all employees: $e');
+      return [];
     }
   }
-
-//save Employee
-  // Future<void> saveEmployee(Employee employee) async {
-  //   final isar = await db;
-  //   await isar.writeTxn(() async {
-  //     await isar.employees.put(employee);
-  //   });
-  // }
 
   // อัปเดต Employee
   Future<void> updateEmployee(Employee employee) async {
     final isar = await db;
+
     await isar.writeTxn(() async {
       await isar.employees.put(employee);
     });
@@ -92,10 +85,8 @@ class IsarService {
   // ฟังก์ชันการค้นหาพนักงานที่มี loginPin ซ้ำ
   Future<Employee?> getEmployeeByPin(String loginPin) async {
     final isar = await db;
-    final employee = await isar.employees
-        .filter()
-        .loginPinEqualTo(loginPin) // ฟิลเตอร์ค้นหาตาม loginPin
-        .findFirst();
+    final employee = await isar.employees.filter().loginPinEqualTo(loginPin).findFirst();
+    print(employee);
     return employee;
   }
 }

@@ -17,4 +17,21 @@ class Employee {
   late String zipCode;
   late String phone;
   late List<String> roles;
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'userName': userName,
+      'loginPin': loginPin,
+      'firstName': firstName,
+      'lastName': lastName,
+      'address': address,
+      'aptSuite': aptSuite,
+      'city': city,
+      'state': state,
+      'zipCode': zipCode,
+      'phone': phone,
+      'roles': roles,
+    };
+  }
 }
